@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-
 * {
     box-sizing: border-box;
     padding: 0;
@@ -11,8 +10,8 @@ body {
 }
 
 .navigation {
-    height: 100%;
-    width: 240px;
+    height: 100vh;
+    width: 250px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -21,7 +20,7 @@ body {
     overflow: hidden;
 }
 
-.navigation a > .logo {
+.navigation a>.logo {
     align-self: center;
     width: 80px;
 }
@@ -30,7 +29,7 @@ body {
     padding: 10px 20px;
     left: 20px;
     text-decoration: none;
-    display: flex; 
+    display: flex;
     align-items: center;
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -38,6 +37,11 @@ body {
 }
 
 .navigation a.active {
+    background-color: #505050;
+    color: white;
+}
+
+.navigation a:hover {
     background-color: #383838;
     color: white;
 }
@@ -47,10 +51,14 @@ body {
 }
 
 .navigation i.material-icons {
-    color: white;
+    color: #ffffff;
     opacity: 0.54;
     margin-right: 25px;
     font-size: 24px;
+}
+
+.navigation img.non-material-icons {
+    margin-right: 25px;
 }
 
 .navigation a.logo-link {
@@ -58,37 +66,56 @@ body {
     padding: 20px 20px;
 }
 
-.navigation hr {
-    opacity: 0.20;
-    border: 1px solid gray;
-    margin: 10px 0;
+.navigation>.logo {
+    position: fixed;
+    z-index: 3;
+    background-color: #212121;
+    width: 250px;
 }
 
 .masthead-container {
     position: fixed;
     z-index: 1;
-    width: 100%;
+    width: 100vw;
     background: #212121;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    /* border-bottom: 1px solid rgba(128, 128, 128, 0.54); */
 }
+
+/* START Learned new way to align two items using flex rather than three START*/
+
+.masthead-container .center {
+    flex: 0 1 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.masthead-container .right {
+    flex: 0 1 auto;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+/* END Learned new way to align two items using flex rather than three END*/
 
 .masthead-container .row {
+    padding: 15px 15px;
     display: flex;
     align-items: center;
-    padding: 20px 20px;
 }
 
-.masthead-container > .row a {
+.masthead-container>.row a {
     padding: 0;
 }
 
-.masthead-container > .row a#mic {
-    margin-left: 10px;
+.masthead-container>.row a#mic {
+    /* margin-left: 10px; */
+    padding-left: 12px;
 }
 
-.masthead-container > .row a > img#user-placeholder {
+.masthead-container>.row a>img#user-placeholder {
     width: 30px;
     border-radius: 50%;
 }
@@ -106,12 +133,61 @@ body {
 
 .mastsection-container {
     position: relative;
-    top: 62px;
+    overflow: hidden;
+    height: 100vh;
+    padding-top: 60px;
+    /* display: none; */
+    z-index: 1;
 }
 
-.mastsection-container > .section {
+.mastsection-container:hover {
+    overflow-y: visible;
+}
+
+.mastsection-container>.section {
     padding: 12px 0;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.54);
+}
+
+.mastsection-container>.section:nth-child(6) {
+    border: none;
+}
+
+.mastsection-container>.section>.about, .terms {
+    padding: 16px 20px 0;
+}
+
+.mastsection-container>.section>.about a, .terms a {
+    padding: 0;
+    display: inline;
+    color: #989898;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+}
+
+.mastsection-container>.section>.terms a {
+    padding: 0;
+    display: inline;
+    color: #989898;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+}
+
+.mastsection-container>.section>.copyright a {
+    color: #989898;
+    background-color: transparent;
+}
+
+.mastsection-container>.section a.section-title {
+    cursor: default;
+}
+
+.mastsection-container>.section a.section-title:hover {
+    background-color: transparent;
 }
 
 .section a.clipped-text {
@@ -124,8 +200,13 @@ body {
     width: 8px;
 }
 
-.mastsection-container::-webkit-scrollbar-track {
+.mastsection-container::-webkit-scrollbar-thumb {
+    height: 100px;
     background-color: rgba(255, 255, 255, 0.20);
+}
+
+.mastsection-container::-webkit-scrollbar-track {
+    background-color: none;
 }
 
 #search-input {
@@ -133,6 +214,7 @@ body {
     width: 550px;
     border: none;
     background-color: #121212;
+    color: white;
 }
 
 #search-input::-webkit-input-placeholder {
@@ -140,17 +222,136 @@ body {
     font-size: 15px;
 }
 
-#main {
-    padding: 20px;
+.content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 250px;
 }
 
-.videos {
+.content .row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 20px;
+}
+
+.content .videos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.row .video {
+    width: 350px;
+    height: 200px;
+    background-color: red;
+    margin: 60px 20px;
+}
+
+.row .video img {
     width: 100%;
     height: 100%;
-    background-color: red;
+    cursor: pointer;
 }
 
+.row .video>.desc {
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    margin: 0;
+    padding: 10px 0;;
+    font-family: 'Roboto', sans-serif;
+}
 
+.desc .channel_user {
+    cursor: pointer;
+}
+
+.video>.desc img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.video .desc #info {
+    color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.video .desc #info > a.title {
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#info i.info_icons {
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.video .desc #info > a.channel {
+    font-size: 15px;
+    color: white !important;
+    opacity: 0.54;
+    text-decoration: none;
+}
+
+.video .desc #info>span.views_upload {
+    font-size: 15px;
+    color: white !important;
+    opacity: 0.54;
+}
+
+.content .videos .tags {
+    position: relative;
+    height: 100%;
+    top: 60px;
+    width: 100%;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.54);
+    border-top: 1px solid rgba(128, 128, 128, 0.54);
+}
+
+.tags>.tags-section {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tags a {
+    text-decoration: none;
+    background-color: #4D4D4D;
+    color: white;
+    word-wrap: none;
+    white-space: nowrap;
+    padding: .5rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 6px;
+    font-size: 14px;
+    border: 1px solid rgba(128, 128, 128, 0.54);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 16px;
+}
+
+.tags a.active {
+    background-color: white;
+    color: #4D4D4D;
+}
 /* Custom Colors | Material Icons */
-.material-icons.iconWhiteOp { color: white !important; opacity: 0.54;}
-.material-icons.iconWhiteFull { color: white !important; opacity: 1 !important;}
+
+.material-icons.iconWhiteOp {
+    color: white !important;
+    opacity: 0.54;
+}
+
+.material-icons.iconWhiteFull {
+    color: white !important;
+    opacity: 1 !important;
+}
